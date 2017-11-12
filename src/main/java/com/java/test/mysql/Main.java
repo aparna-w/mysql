@@ -34,6 +34,17 @@ public class Main {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
+		
+		UserDTO aparna;
+		
+		try {
+			aparna = userDAO.fetchByEmail("aparna@email.com");
+		} catch (SQLException e) {
+			aparna = null;
+			e.printStackTrace();
+		}
+		
+		System.out.println(aparna.toString());
 	}
 
 }
