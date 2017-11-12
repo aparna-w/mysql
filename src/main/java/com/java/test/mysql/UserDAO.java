@@ -19,8 +19,8 @@ public class UserDAO {
 	private static final String DB_COLUMN_EMAIL = "email";
 	
 	
-	private static final String QUERY_GET_USER = "select " + DB_COLUMN_ID + ", " + DB_COLUMN_FIRST_NAME + ", "+ DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_PHONE + ", " + DB_COLUMN_EMAIL + " from " + DB_TABLE_NAME + " where " + DB_COLUMN_ID + " = ?";
-	private static final String QUERY_GET_ALL_USER = "select " + DB_COLUMN_ID + ", " + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_PHONE + ", " + DB_COLUMN_EMAIL + " from " + DB_TABLE_NAME;
+	private static final String QUERY_GET_USER = "select " + DB_COLUMN_ID + ", " + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_PHONE + ", " + DB_COLUMN_EMAIL + " from " + DB_TABLE_NAME;
+	private static final String QUERY_GET_USER_ID = QUERY_GET_USER + " where " + DB_COLUMN_ID + " = ?";
 	private static final String QUERY_ADD_USER = "insert into " + DB_TABLE_NAME + " (" + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_EMAIL + ", " + DB_COLUMN_PHONE + ") values (?, ?, ?, ?)";
 	
 	public UserDAO () {
@@ -40,7 +40,7 @@ public class UserDAO {
 	
 	public UserDTO fetch(int id) throws SQLException {
 		
-		PreparedStatement query = connection.prepareStatement(QUERY_GET_USER);
+		PreparedStatement query = connection.prepareStatement(QUERY_GET_USER_ID);
 		
 		query.setInt(1, id);
 		
