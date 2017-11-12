@@ -22,18 +22,18 @@ public class Main {
 			System.out.println(user.toString());
 		}
 		
-		UserDTO user = new UserDTO();
+/*		UserDTO user = new UserDTO();
 		user.setFirstName("Gaurav");
 		user.setLastName("Gurdasani");
 		user.setEmail("gaurav@gmail.com");
 		user.setPhone(9876543210L);
 		
-//		try {
-//			userDAO.save(user);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		try {
+			userDAO.save(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		UserDTO aparna;
 		
@@ -46,6 +46,24 @@ public class Main {
 		
 		System.out.println(aparna.toString());
 		
+		aparna.setEmail("aparna@gmail.com");
+		
+		try {
+			userDAO.update(aparna);
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
+			aparna = userDAO.fetchByEmail("aparna@gmail.com");
+		} catch (SQLException e) {
+			aparna = null;
+			e.printStackTrace();
+		}
+		
+		System.out.println(aparna.toString());
+		
+		
 		ArrayList<UserDTO> usersByName;
 		
 		try {
@@ -57,7 +75,7 @@ public class Main {
 		
 		for (UserDTO userByName : usersByName) {
 			System.out.println(userByName.toString());
-		}
+		}*/
 	}
 
 }

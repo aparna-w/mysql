@@ -24,6 +24,7 @@ public class UserDAO {
 	private static final String QUERY_GET_USER_NAME = QUERY_GET_USER + " where " + DB_COLUMN_FIRST_NAME + " like ? or " + DB_COLUMN_LAST_NAME + " like ?";
 	private static final String QUERY_GET_USER_EMAIL = QUERY_GET_USER + " where " + DB_COLUMN_EMAIL + " = ?";
 	private static final String QUERY_ADD_USER = "insert into " + DB_TABLE_NAME + " (" + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_EMAIL + ", " + DB_COLUMN_PHONE + ") values (?, ?, ?, ?)";
+	private static final String QUERY_UPDATE_USER = "update " + DB_TABLE_NAME + " set " + DB_COLUMN_FIRST_NAME + " = ?, " + DB_COLUMN_LAST_NAME + " = ?, " + DB_COLUMN_EMAIL + " = ?, " + DB_COLUMN_PHONE + " = ? where " + DB_COLUMN_ID + " = ?";
 	
 	public UserDAO () {
 		connection = MySqlClient.getInstance();
@@ -34,11 +35,23 @@ public class UserDAO {
 			PreparedStatement query = connection.prepareStatement(QUERY_ADD_USER);
 			query.setString(1, user.getFirstName());
 			query.setString(2, user.getLastName());
-			query.setLong(4, user.getPhone());
 			query.setString(3, user.getEmail());
+			query.setLong(4, user.getPhone());
 			
 			query.executeUpdate();
 	}
+	
+	public void update(UserDTO user) throws SQLException {
+		
+		PreparedStatement query = connection.prepareStatement(QUERY_UPDATE_USER);
+		query.setString(1, user.getFirstName());
+		query.setString(2, user.getLastName());
+		query.setString(3, user.getEmail());
+		query.setLong(4, user.getPhone());
+		query.setInt(5, user.getId());
+		
+		query.executeUpdate();
+}
 	
 	public UserDTO fetch(int id) throws SQLException {
 		
