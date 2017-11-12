@@ -45,6 +45,19 @@ public class Main {
 		}
 		
 		System.out.println(aparna.toString());
+		
+		ArrayList<UserDTO> usersByName;
+		
+		try {
+			usersByName = userDAO.fetchByName("gurdasani");
+		} catch (SQLException e) {
+			usersByName = null;
+			e.printStackTrace();
+		}
+		
+		for (UserDTO userByName : usersByName) {
+			System.out.println(userByName.toString());
+		}
 	}
 
 }

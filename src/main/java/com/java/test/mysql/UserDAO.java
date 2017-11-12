@@ -21,6 +21,7 @@ public class UserDAO {
 	
 	private static final String QUERY_GET_USER = "select " + DB_COLUMN_ID + ", " + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_PHONE + ", " + DB_COLUMN_EMAIL + " from " + DB_TABLE_NAME;
 	private static final String QUERY_GET_USER_ID = QUERY_GET_USER + " where " + DB_COLUMN_ID + " = ?";
+	private static final String QUERY_GET_USER_NAME = QUERY_GET_USER + " where " + DB_COLUMN_FIRST_NAME + " like ? or " + DB_COLUMN_LAST_NAME + " like ?";
 	private static final String QUERY_GET_USER_EMAIL = QUERY_GET_USER + " where " + DB_COLUMN_EMAIL + " = ?";
 	private static final String QUERY_ADD_USER = "insert into " + DB_TABLE_NAME + " (" + DB_COLUMN_FIRST_NAME + ", " + DB_COLUMN_LAST_NAME + ", " + DB_COLUMN_EMAIL + ", " + DB_COLUMN_PHONE + ") values (?, ?, ?, ?)";
 	
@@ -90,6 +91,33 @@ public UserDTO fetchByEmail(String email) throws SQLException {
 		ArrayList<UserDTO> users = new ArrayList<UserDTO>();
 		
 		PreparedStatement query = connection.prepareStatement(QUERY_GET_USER);
+		
+		ResultSet resultSet = query.executeQuery();
+		
+		while(resultSet.next()) {
+			
+			UserDTO user = new UserDTO();
+			
+			user.setId(resultSet.getInt(DB_COLUMN_ID));
+			user.setFirstName(resultSet.getString(DB_COLUMN_FIRST_NAME));
+			user.setLastName(resultSet.getString(DB_COLUMN_LAST_NAME));
+			user.setEmail(resultSet.getString(DB_COLUMN_EMAIL));
+			user.setPhone(resultSet.getLong(DB_COLUMN_PHONE));
+			
+			users.add(user);
+		}
+		
+		return users;
+	}
+	
+	public ArrayList<UserDTO> fetchByName(String name) throws SQLException {
+		
+		ArrayList<UserDTO> users = new ArrayList<UserDTO>();
+		
+		PreparedStatement query = connection.prepareStatement(QUERY_GET_USER_NAME);
+		
+		query.setString(1, "%" + name + "%");
+		query.setString(2, "%" + name + "%");
 		
 		ResultSet resultSet = query.executeQuery();
 		
