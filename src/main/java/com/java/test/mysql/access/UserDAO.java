@@ -1,10 +1,13 @@
-package com.java.test.mysql;
+package com.java.test.mysql.access;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.java.test.mysql.MySqlClient;
+import com.java.test.mysql.transfer.UserDTO;
 
 public class UserDAO {
 	

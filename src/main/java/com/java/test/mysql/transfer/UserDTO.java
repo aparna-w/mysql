@@ -1,4 +1,4 @@
-package com.java.test.mysql;
+package com.java.test.mysql.transfer;
 
 public class UserDTO {
 	

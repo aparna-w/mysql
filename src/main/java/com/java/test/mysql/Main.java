@@ -3,6 +3,9 @@ package com.java.test.mysql;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.java.test.mysql.access.UserDAO;
+import com.java.test.mysql.transfer.UserDTO;
+
 public class Main {
 
 	public static void main(String[] args) {
