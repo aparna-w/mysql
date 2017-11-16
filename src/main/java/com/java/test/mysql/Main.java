@@ -4,13 +4,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.java.test.mysql.access.UserDAO;
+import com.java.test.mysql.transfer.ProductDTO;
 import com.java.test.mysql.transfer.UserDTO;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
-		UserDAO userDAO = new UserDAO();
+/*		UserDAO userDAO = new UserDAO();
 		
 		ArrayList<UserDTO> users;
 		
@@ -25,7 +26,7 @@ public class Main {
 			System.out.println(user.toString());
 		}
 		
-/*		UserDTO user = new UserDTO();
+		UserDTO user = new UserDTO();
 		user.setFirstName("Gaurav");
 		user.setLastName("Gurdasani");
 		user.setEmail("gaurav@gmail.com");
@@ -79,6 +80,8 @@ public class Main {
 		for (UserDTO userByName : usersByName) {
 			System.out.println(userByName.toString());
 		}*/
+		
+		
 	}
 
 }
